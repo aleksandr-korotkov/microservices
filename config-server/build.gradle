@@ -1,0 +1,47 @@
+plugins {
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'org.springframework.boot' version '2.2.3.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+
+//task fatJar(type: Jar) {
+//	manifest {
+//		attributes 'Main-Class': 'com.epam.hw.netflix.ConfigServerApplication'
+//	}
+//	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+//	with jar
+//}
+jar {
+	manifest {
+		attributes "Main-Class": 'com.epam.hw.netflix.ConfigServerApplication'
+	}
+
+	from {
+		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-config-server', version: '2.2.3.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.3.1.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.3.1.RELEASE'
+
+}
