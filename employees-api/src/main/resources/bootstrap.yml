@@ -5,3 +5,5 @@ spring:
     config:
       uri: http://${CONFIG_HOST:config-server}:8888
       failFast: true
+logging:
+  config: ${spring.cloud.config.uri}/*/default/master/logback.xml

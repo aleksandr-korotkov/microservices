@@ -52,4 +52,7 @@ dependencies {
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.3.RELEASE'
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.4'
     compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.3.7.RELEASE'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '6.4'
+    compile group: 'com.github.danielwegener', name: 'logback-kafka-appender', version: '0.2.0-RC1'
 }

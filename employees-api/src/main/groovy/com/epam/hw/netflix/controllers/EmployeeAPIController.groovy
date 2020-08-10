@@ -5,8 +5,6 @@ import com.epam.hw.netflix.services.EmployeeService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -14,13 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/employees")
 class EmployeeAPIController {
-
-
-    @Value('${app.topic}')
-    private String topic;
-
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
     EmployeeService employeeService
@@ -42,6 +33,5 @@ class EmployeeAPIController {
         ]
 
         log.debug(employee.firstName + " " + employee.getEmail() + " " + employee.lastName + " " + employee.workspaceId);
-        kafkaTemplate.send(topic, employee.firstName + " " + employee.getEmail() + " " + employee.lastName + " " + employee.workspaceId)
     }
 }
